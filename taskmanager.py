@@ -32,3 +32,12 @@ class TaskManager:
         self.next_id += 1
         self.save_tasks()
         print(f"Завдання додано! ID: {task.task_id}")
+
+    def del_task(self, task_id):
+        initial_count = len(self.tasks)
+        self.tasks = [task for task in self.tasks if task.task_id != task_id]
+        if len(self.tasks) < initial_count:
+            self._save_tasks()
+            print(f"Завдання з ID {task_id} видалено.")
+        else:
+            print(f"Завдання з ID {task_id} не знайдено.")
