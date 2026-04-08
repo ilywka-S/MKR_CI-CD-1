@@ -2,10 +2,11 @@ import json
 from datetime import datetime
 from task import Task
 
+
 class TaskManager:
 
     def __init__(self, filename="tasks.txt"):
-        self.filename=filename
+        self.filename = filename
         self.tasks = []
         self.next_id = 1
 
@@ -17,16 +18,15 @@ class TaskManager:
             if self.tasks:
                 for task in self.tasks:
                     self.next_id = max(task.task_id, self.next_id) + 1
-    
+
     def save_tasks(self):
         with open(self.filename, 'w') as file:
             json.dump([task.create_dictionary() for task in self.tasks], file)
 
-
-    def add_task(self, desc, prior, date = None):
+    def add_task(self, desc, prior, date=None):
         if not date:
             date = datetime.now().strftime("%Y-%m-%d %H:%M")
-        
+
         task = Task(self.next_id, desc, date, prior)
         self.tasks.append(task)
         self.next_id += 1
@@ -57,3 +57,4 @@ class TaskManager:
         print("\nСписок завдань")
         for t in sorted_tasks:
             print(f"ID: {t.task_id} | Пріоритет: {t.priority} | Опис: {t.description}")
+            

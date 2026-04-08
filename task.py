@@ -12,7 +12,8 @@ class Task:
             "date": self.date,
             "prior": self.priority
         }
-    
+
     @classmethod
     def unwind_dictionary(cls, data):
         return cls(data["id"], data["desc"], data["date"], data["prior"])
+    
