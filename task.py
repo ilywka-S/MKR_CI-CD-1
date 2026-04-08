@@ -5,4 +5,14 @@ class Task:
         self.date = date,
         self.prority = priority
 
+    def create_dictionary(self):
+        return {
+            "id": self.task_id,
+            "desc": self.description,
+            "date": self.date,
+            "prior": self.prority
+        }
     
+    @classmethod
+    def unwind_dictionary(cls, data):
+        return cls(data["id"], data["desc"], data["date"], data["prior"])
