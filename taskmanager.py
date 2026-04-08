@@ -1,6 +1,8 @@
 import json
+from task import Task
 
 class TaskManager:
+
     def __init__(self, filename="tasks.txt"):
         self.filename=filename,
         self.tasks = [],
@@ -9,7 +11,7 @@ class TaskManager:
     def load_tasks(self):
         with open(self.filename, 'r') as file:
             data = json.load(file)
-            self.tasks = data
+            self.tasks = [Task.unwind_dictionary(t) for t in data]
 
             if self.tasks:
                 for id in self.tasks:
@@ -17,5 +19,5 @@ class TaskManager:
     
     def save_tasks(self):
         with open(self.filename, 'w') as file:
-            json.dump(file)
+            json.dump([Task.create_dictionary() for task in self.tasks], file)
 
