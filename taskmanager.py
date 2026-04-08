@@ -9,9 +9,10 @@ class TaskManager:
         self.filename = filename
         self.tasks = []
         self.next_id = 1
+        self.load_tasks()
 
     def load_tasks(self):
-        with open(self.filename, 'r') as file:
+        with open(self.filename, 'r', encoding='utf-8') as file:
             data = json.load(file)
             self.tasks = [Task.unwind_dictionary(t) for t in data]
 
@@ -57,4 +58,3 @@ class TaskManager:
         print("\nСписок завдань")
         for t in sorted_tasks:
             print(f"ID: {t.task_id} | Пріоритет: {t.priority} | Опис: {t.description}")
-            

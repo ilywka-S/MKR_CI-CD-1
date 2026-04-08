@@ -1,7 +1,7 @@
 from taskmanager import TaskManager
 
 def run_app():
-    manager = TaskManager("my_tasks.txt")
+    manager = TaskManager("tasks.txt")
 
     while True:
         print("1. Показати завдання (за пріоритетом)")
