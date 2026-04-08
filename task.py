@@ -3,14 +3,14 @@ class Task:
         self.task_id = task_id,
         self.description = description,
         self.date = date,
-        self.prority = priority
+        self.priority = priority
 
     def create_dictionary(self):
         return {
             "id": self.task_id,
             "desc": self.description,
             "date": self.date,
-            "prior": self.prority
+            "prior": self.priority
         }
     
     @classmethod

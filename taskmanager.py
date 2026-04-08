@@ -41,3 +41,19 @@ class TaskManager:
             print(f"Завдання з ID {task_id} видалено.")
         else:
             print(f"Завдання з ID {task_id} не знайдено.")
+
+    def list_tasks(self, sort_by="priority"):
+        if not self.tasks:
+            print("Список порожній.")
+            return
+
+        if sort_by == "priority":
+            sorted_tasks = sorted(self.tasks, key=lambda x: x.priority)
+        elif sort_by == "date":
+            sorted_tasks = sorted(self.tasks, key=lambda x: x.date)
+        else:
+            sorted_tasks = self.tasks
+
+        print("\nСписок завдань")
+        for t in sorted_tasks:
+            print(f"ID: {t.task_id} | Пріоритет: {t.priority} | Опис: {t.description}")
